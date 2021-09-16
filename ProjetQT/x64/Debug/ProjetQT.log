@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  database.cpp
+  tcpserver.cpp
+  main.cpp
+  qrc_ProjetQT.cpp
+  moc_tcpserver.cpp
+  moc_database.cpp
+  ProjetQT.vcxproj -> C:\Users\Martin\source\repos\ProjetQT\x64\Debug\TCPServer.exe
