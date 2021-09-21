@@ -1,7 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
-  moc tcpserver.h
   tcpserver.cpp
-  main.cpp
-  moc_tcpserver.cpp
-  ProjetQT.vcxproj -> C:\Users\Martin\source\repos\tp1-projetQt\x64\Debug\TCPServer.exe
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(98): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(122): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(142): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(162): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+  ProjetQT.vcxproj -> C:\Users\Martin\source\repos\tp1-projetQt\TcpServer\x64\Debug\TCPServer.exe

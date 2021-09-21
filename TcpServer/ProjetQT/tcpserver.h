@@ -8,6 +8,7 @@
 
 #include <QApplication>
 #include "database.h"
+#include <QDateTime>
 
 class TcpServer : public QMainWindow
 {
@@ -15,16 +16,18 @@ class TcpServer : public QMainWindow
 
 public:
 	TcpServer(QWidget *parent = Q_NULLPTR);
+	char requete;
+	char retour;
+	char donnees;
 
 private:
     Ui::TcpServerClass ui;
 	QTcpServer * server;
 	QTcpSocket * socket;
+	BaseDeDonnees *bddMySQL;
 
 public slots: 
 	void onServerNewConnection();
 	void onClientDisconnected();
 	void onClientReadyRead();
-	void sqlConnect();
-	void loginUser();
 };
