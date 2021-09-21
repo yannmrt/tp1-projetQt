@@ -5,23 +5,89 @@
     <link rel="stylesheet" href="Messagerie.css">
 </head>
 <body>
-    <div>
+        <div class="FormulaireInscription"> 
+          <form id="Inscription" method="POST" action="">
+            <div align="center">
+              <div>
+                  <label for="username">Nom d'utilisateur</label>
+                  <div>
+                      <input type="text" class="form-control" id="usernameInscription"name="usernameInscription" placeholder="Votre nom d'utilisateur">
+                  </div>
+              </div>
+              <div>
+                  <label for="password">Mot de passe</label>
+                  <div>
+                      <input type="password" class="form-control" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
+                  </div>
+              </div>
+              <button type="submit">Connexion</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="FormulaireConnexion"> 
+          <form id="Connexion" method="POST" action="">
+            <div align="center">
+              <div>
+                  <label for="username">Nom d'utilisateur</label>
+                  <div>
+                      <input type="text" class="form-control" id="usernameConnexion"name="usernameConnexion" placeholder="Votre nom d'utilisateur">
+                  </div>
+              </div>
+              <div>
+                  <label for="password">Mot de passe</label>
+                  <div>
+                      <input type="password" class="form-control" id="passwordConnexion" name="passwordConnexion" placeholder="Votre mot de passe">
+                  </div>
+              </div>
+              <button type="submit">Connexion</button>
+            </div>
+          </form>
+        </div>
+
+    <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" action="">
           <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)"/><button>Envoyer</button>
         </form>
     </div>
+
+
 </body>
 
-<script src="/socket.io/socket.io.js"></script>
+<script src="WebSocket.js"></script>
 <script>
+
+  document.getElementById("Inscription").addEventListener("submit", function(e){
+    e.preventDefault();
+    var usernameInscription = document;getElementById("usernameInscription")
+    var MdpInscription = document.getElementById("passwordInscription");
+
+    if (!usernameInscription.value){
+      erreur = "Veullez entrer un nom d'utilisateur";
+    }
+    if (!MdpInscription.value){
+      erreur = "Veuillez entrer un mot de passe";
+    }
+  })
+
+  document.getElementById("Connexion").addEventListener("submit", function(e){
+    e.preventDefault();
+    var usernameConnexion = document;getElementById("usernameConnexion")
+    var MdpConnexion = document.getElementById("passwordConnexion");
+
+    if (!usernameConnexion.value){
+      erreur = "Veullez entrer un nom d'utilisateur";
+    }
+    if (!MdpConnexion.value){
+      erreur = "Veuillez entrer un mot de passe";
+    }
+  })
 
   function auto_height(elem) {  /* javascript */
     elem.style.height = "75%";
     elem.style.height = (elem.scrollHeight)+"px";
   }
-
-  var socket = io();
 
   var messages = document.getElementById('Message');
   var form = document.getElementById('form');
