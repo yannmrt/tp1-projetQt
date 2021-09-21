@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Messagerie Gremont</title>
+    <link rel="stylesheet" href="Messagerie.css">
+</head>
+<body>
+    <div>
+        <ul id="Message"></ul>
+        <form id="form" action="">
+          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)"/><button>Envoyer</button>
+        </form>
+    </div>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  function auto_height(elem) {  /* javascript */
+    elem.style.height = "75%";
+    elem.style.height = (elem.scrollHeight)+"px";
+  }
+
+  var socket = io();
+
+  var messages = document.getElementById('Message');
+  var form = document.getElementById('form');
+  var input = document.getElementById('textBox');
+
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('MessageChat', input.value);
+      input.value = '';
+    }
+  });
+
+  socket.on('MessageChat', function(msg) {
+    var MessageListe = document.createElement('li');
+    MessageListe.textContent = msg;
+    messages.appendChild(MessageListe);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+</html>
