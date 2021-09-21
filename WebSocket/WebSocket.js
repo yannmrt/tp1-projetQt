@@ -1,3 +1,4 @@
+/*
 var socket = null;
 try {
     socket = new WebSocket("ws://192.168.65.230:178");
@@ -9,24 +10,34 @@ socket.onerror = function (error) {
     console.error(error);
 };
 
-// Lorsque la connexion est �tablie.
+
 socket.onopen = function (event) {
-    console.log("Connexion �tablie.");
 
-    // Lorsque la connexion se termine.
-    this.onclose = function (event) {
-        console.log("Connexion termin�.");
+    
+    this.onmessage = function (msg) {
+        this.send('MessageChat', msg);
     };
 
-    // Lorsque le serveur envoi un message.
-    this.onmessage = function (event) {
-        console.log("Message:", event.data);
-    };
-
-    // Envoi d'un message vers le serveur.
-    this.send("Hello world!");
 };
+*/
 
-$('#ButtonEnvoyer').click(function () {
-    ws.send(document.querySelector('#BoiteMessage').value);
-})
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', (socket) => {
+  socket.on('MessageChat', (msg) => {
+    io.emit('MessageChat', msg);
+  });
+});
+
+server.listen(3000, () => {
+  console.log('Serveur en ligne');
+});
