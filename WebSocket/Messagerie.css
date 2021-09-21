@@ -1,0 +1,41 @@
+body { 
+    margin: 0; 
+    padding-bottom: 3rem;
+}
+
+#form { 
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.25rem; 
+    position: fixed; bottom: 0;
+    left: 0;
+    right: 0; 
+    display: flex; 
+    height: 4rem; 
+    backdrop-filter: blur(10px); 
+}
+
+#textBox{
+    width: 100%;
+}
+
+#Message {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0; 
+}
+
+#Message > li { 
+    padding: 0.5rem 1rem; 
+}
+
+#Message > li:nth-child(odd) { 
+    background: #efefef; 
+}
+
+.MessageBox{
+    display: none;
+}
+
+.FormulaireConnexion{
+    display: none;
+}
