@@ -103,7 +103,7 @@ void TcpCLient::messageserver()
 
 }
 void TcpCLient::messagerecu()
-	{
+{
 	QByteArray data = socket->read(socket->bytesAvailable());
 	QString str(data);
 	if (init == 0) {
@@ -121,6 +121,7 @@ void TcpCLient::messagerecu()
 			ui.test->setVisible(true);
 			ui.test2->setVisible(false);
 			ui.insc->setVisible(false);
+			ui.labelinsc->setVisible(false);
 			init = 1;
 		}
 		else if (str == "register.ok") {
@@ -130,7 +131,7 @@ void TcpCLient::messagerecu()
 		else if (str == "register.error") {
 			ui.labelinsc->setText("inscription non reussis !");
 		}
-		
+
 		else if (str == "login.error") {
 			ui.labelinsc->setText("login ou mot de passe incorrect !");
 		}
@@ -141,16 +142,41 @@ void TcpCLient::messagerecu()
 		}
 	}
 	else if (str == "sendMsg.ok") {
-		ui.test->insertPlainText("message envoyer + afficher le message avec le peudo");
+
+		QJsonObject levan{
+		{"Method",4},
+		};
+
+		QJsonArray jsarray{ levan };
+		QJsonDocument jsDoc(jsarray);
+
+		QString jsString = QString::fromLatin1(jsDoc.toJson());
+		socket->write(jsString.toLatin1());
+		//ui.test->insertPlainText("message envoyer + afficher le message avec le peudo");
+		//ui.test->insertPlainText(str);
+		ui.test->QTextEdit::clear();
 	}
+
+		
+
 	else if (str == "sendMsg.error") {
 		ui.test->insertPlainText("message non envoyer.");
 	}
 	else {
-		ui.test->insertPlainText("gros probleme");
+		//ui.test->insertPlainText("gros probleme");
 		ui.test->insertPlainText(str);
+		ui.test->insertPlainText("\n");
+		
 	}
-	}
+
+	
+
+
+
+
+
+}
+
 
 void TcpCLient::incri() {
 	pseudo = ui.nom->text();
@@ -187,3 +213,42 @@ void TcpCLient::incri() {
 /*res["method"] = "login";
 res["username"] = "username";
 res["password"] = fkezfe;*/
+
+
+/*
+//debut
+
+		QTcpSocket * socket = qobject_cast<QTcpSocket*>(sender());
+		QByteArray data = socket->read(socket->bytesAvailable() < 64 ? 64 : socket->bytesAvailable());
+		QString str(data);
+
+		//QString str = this->socket->readAll();
+		QJsonDocument jsonResponse(QJsonDocument::fromJson(data));
+		QJsonArray & array = jsonResponse.array();
+
+		for (QJsonArray::iterator it = array.begin(); it != array.end(); it++)
+		{
+			if ((*it).isObject())
+			{
+				QJsonObject object = (*it).toObject();
+
+
+				QString method = object.value("Method").toVariant().toString();
+				//1 = login / 2 = sendMessage / 3 = method
+				
+
+if (method == "2") {
+	// Connexion de l'utilisateur
+	QString method = object.value("Method").toVariant().toString();
+	QString username = object.value("username").toVariant().toString();
+	QString message = object.value("message").toVariant().toString();
+	QString heure = object.value("heure").toVariant().toString();
+
+	ui.test->insertPlainText(username + message + heure);
+
+
+}
+			}
+		}
+
+		//fin */
