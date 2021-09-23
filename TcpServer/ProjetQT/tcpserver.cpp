@@ -175,7 +175,7 @@ void TcpServer::onClientReadyRead()
 							QString jsString = QString::fromLatin1(jsDoc.toJson());
 
 							obj->write(jsString.toLatin1());*/
-							QString msgFinal = heure + " " + username + " : " + text;
+							QString msgFinal = heure + " " + username + " : " + text + "\n";
 
 							obj->write(msgFinal.toUtf8());
 
