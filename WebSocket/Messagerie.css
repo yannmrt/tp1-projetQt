@@ -32,11 +32,11 @@ body {
     background: #efefef; 
 }
 
-/*
+
 .MessageBox{
     display: none;
 }
-*/
+
 
 section.login{
     display: flex;

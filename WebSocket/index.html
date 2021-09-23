@@ -27,7 +27,6 @@
         
                   <label for="passwordInscription">Mot de passe</label>
                       <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
-                      <input type="password" id="passwordInscriptionConfirm" name="passwordInscriptionConfirm" placeholder="Confirmer votre mot de passe">
               <button id="ShowInscription" onclick="afficheConnexion(FormulaireInscription)">Page Connexion</button>
               <button type="submit">Inscription</button>
           </form>
@@ -94,9 +93,22 @@
     elem.style.height = (elem.scrollHeight)+"px";
   }
 
+  function inscription() {
+  var inscription = {
+    method: "",
+    username: document.getElementById("usernameInscription").value,
+    password: document.getElementById("passwordInscription").value,
+    
+    
+  };
+
+  socket.send(JSON.stringify(msg));
+
+  return false;
+  }
 
 function connexion() {
-  var user = {
+  var userconnexion = {
     method: "1",
     username: document.getElementById("usernameConnexion").value,
     password: document.getElementById("passwordConnexion").value,
@@ -105,8 +117,6 @@ function connexion() {
   };
 
   socket.send(JSON.stringify(msg));
-  
-  document.getElementById("textBox").value = "";
 
   return false;
 }

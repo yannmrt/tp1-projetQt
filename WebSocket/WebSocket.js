@@ -10,6 +10,12 @@ socket.addEventListener('open', function (event) {
 // Écouter les messages
 socket.addEventListener('message', function (event) {
   console.log('Voici un message du serveur', event.data);
+  if(event.data = "login.ok"){
+    document.getElementById('FormulaireInscription').style.display='none';
+    document.getElementById('FormulaireConnexion').style.display='none';
+    document.getElementById('textBox').style.display='flex';
+    var UserCorrect = document.getElementById("usernameInscription").value;
+  }
 });
 
 
