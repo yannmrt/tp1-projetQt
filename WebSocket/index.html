@@ -7,7 +7,7 @@
 <body>
       <section class="login">
           <div class="FormulaireConnexion" id="FormulaireConnexion"> 
-            <form id="Connexion" method="POST" action="">
+            <form id="Connexion" method="POST" onsubmit="return false">
                 <label for="usernameConnexion">Nom d'utilisateur</label>
                   <input type="text" id="usernameConnexion"name="usernameConnexion" placeholder="Votre nom d'utilisateur">
                 
@@ -21,7 +21,7 @@
       
       <section class="login">
         <div class="FormulaireInscription" id="FormulaireInscription"> 
-          <form id="Inscription" method="POST" action="">
+          <form id="Inscription" method="POST" onsubmit="return false">
                   <label for="usernameInscription">Nom d'utilisateur</label>
                       <input type="text" id="usernameInscription"name="usernameInscription" placeholder="Votre nom d'utilisateur">
         
@@ -36,8 +36,8 @@
 
     <div class="MessageBox">
         <ul id="Message"></ul>
-        <form id="form" action="">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)"/><button>Envoyer</button>
+        <form id="form" onsubmit="return false">
+          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText()">Envoyer</button>
         </form>
     </div>
 
@@ -60,11 +60,11 @@
     }
   
 
-  document.getElementById("FormulaireInscription").addEventListener("submit", function(e){
+  document.getElementById('FormulaireInscription').addEventListener('submit', function(e){
     e.preventDefault();
-    var usernameInscription = document.getElementById("usernameInscription")
-    var MdpInscription = document.getElementById("passwordInscription");
-    var MdpInscriptionConfirm = document.getElementById("passwordInscriptionConfirm");
+    var usernameInscription = document.getElementById('usernameInscription')
+    var MdpInscription = document.getElementById('passwordInscription');
+    var MdpInscriptionConfirm = document.getElementById('passwordInscriptionConfirm');
 
     if (usernameInscription.value = ""){
       erreur = "Veullez entrer un nom d'utilisateur";
@@ -89,29 +89,43 @@
     }
   })
 
-  function auto_height(elem) {  /* javascript */
+  function auto_height(elem) {  
     elem.style.height = "75%";
     elem.style.height = (elem.scrollHeight)+"px";
   }
 
-  var messages = document.getElementById('Message');
-  var form = document.getElementById('form');
-  var input = document.getElementById('textBox');
 
+function connexion() {
+  var user = {
+    method: "1",
+    username: document.getElementById("usernameConnexion").value,
+    password: document.getElementById("passwordConnexion").value,
+    
+    
+  };
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value) {
-      socket.emit('MessageChat', input.value);
-      input.value = '';
-    }
-  });
+  socket.send(JSON.stringify(msg));
+  
+  document.getElementById("textBox").value = "";
 
-  socket.on('MessageChat', function(msg) {
-    var MessageListe = document.createElement('li');
-    MessageListe.textContent = msg;
-    messages.appendChild(MessageListe);
-    window.scrollTo(0, document.body.scrollHeight);
-  });
+  return false;
+}
+
+function sendText() {
+  var msg = {
+    method: "2",
+    username:   clientID,
+    message: document.getElementById("textBox").value,
+    
+    
+  };
+
+  socket.send(JSON.stringify(msg));
+  
+  document.getElementById("textBox").value = "";
+
+  return false;
+}
+
 </script>
 </html>
