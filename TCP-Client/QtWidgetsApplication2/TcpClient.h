@@ -9,6 +9,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QCryptographicHash>
+#include <QPixmap>
 
 
 class TcpCLient : public QMainWindow
@@ -24,6 +25,7 @@ private:
 	int init = 0;
 	char mess = 10;
 	QString pseudo;
+
 
 private slots:
 	void connexion();

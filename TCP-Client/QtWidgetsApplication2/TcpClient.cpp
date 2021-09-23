@@ -1,4 +1,7 @@
 #include "TcpCLient.h"
+#include <qtextedit.h>
+#include <qscrollbar.h>
+#include <QPixmap>
 
 TcpCLient::TcpCLient(QWidget *parent)
     : QMainWindow(parent)
@@ -71,6 +74,18 @@ void TcpCLient::onSocketConnected()
 void TcpCLient::onSocketDisonnected()
 {
 	ui.co->setText("deconnecter");
+	ui.nom->setVisible(false);
+	ui.mdp->setVisible(false);
+	ui.label_2->setVisible(false);
+	ui.label_3->setVisible(false);
+	ui.label->setVisible(false);
+	ui.pushButton->setVisible(false);
+	ui.lineEdit->setVisible(false);
+	ui.pushButton_2->setVisible(false);
+	ui.test->setVisible(false);
+	ui.test2->setVisible(false);
+	ui.insc->setVisible(false);
+	ui.labelinsc->setVisible(false);
 }
 void TcpCLient::messageserver()
 {
@@ -91,6 +106,7 @@ void TcpCLient::messageserver()
 		QString jsString = QString::fromLatin1(jsDoc.toJson());
 
 		socket->write(jsString.toLatin1());
+		ui.lineEdit->clear();
 		//socket->write(documentJSON);
 		//socket->write(msg.toStdString().c_str());
 	}
@@ -123,13 +139,23 @@ void TcpCLient::messagerecu()
 			ui.insc->setVisible(false);
 			ui.labelinsc->setVisible(false);
 			init = 1;
+			QJsonObject levan{
+				{"Method",4},
+			};
+
+			QJsonArray jsarray{ levan };
+			QJsonDocument jsDoc(jsarray);
+
+			QString jsString = QString::fromLatin1(jsDoc.toJson());
+			socket->write(jsString.toLatin1());
+			
 		}
 		else if (str == "register.ok") {
 			ui.labelinsc->setText("inscription reussis !");
 		}
 
 		else if (str == "register.error") {
-			ui.labelinsc->setText("inscription non reussis !");
+			ui.labelinsc->setText("pseudo deja utilisé");
 		}
 
 		else if (str == "login.error") {
@@ -165,15 +191,8 @@ void TcpCLient::messagerecu()
 	else {
 		//ui.test->insertPlainText("gros probleme");
 		ui.test->insertPlainText(str);
-		ui.test->insertPlainText("\n");
-		
+		ui.test->verticalScrollBar()->setValue(ui.test->verticalScrollBar()->maximum());
 	}
-
-	
-
-
-
-
 
 }
 
