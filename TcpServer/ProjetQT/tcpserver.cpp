@@ -154,7 +154,6 @@ void TcpServer::onClientReadyRead()
 					retour = bddMySQL->recuperer(requete, values);
 
 					if (retour == true) {
-						ui.connectionStatusLabel->setText("req ok");
 						// Ici on va envoyer les messages au client au format JSON
 						QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC");
 						// for(/*initialisation*/ int i=1; /*condition*/ i<=10; /*incrémentation*/ ++i)
@@ -163,7 +162,7 @@ void TcpServer::onClientReadyRead()
 							QString heure = query.value("heure").toString();
 							QString username = query.value("username").toString();
 
-							QJsonObject levan{
+							/*QJsonObject levan{
 								{"Method",2},
 								{"username",username},
 								{"message",text},
@@ -175,7 +174,10 @@ void TcpServer::onClientReadyRead()
 
 							QString jsString = QString::fromLatin1(jsDoc.toJson());
 
-							obj->write(jsString.toLatin1());
+							obj->write(jsString.toLatin1());*/
+							QString msgFinal = heure + " " + username + " : " + text;
+
+							obj->write(msgFinal.toUtf8());
 
 						}
 					}
