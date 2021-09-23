@@ -23,8 +23,6 @@ TcpServer::TcpServer(QWidget *parent)
 	// Connexion à la bdd
 	bddMySQL = BaseDeDonnees::getInstance("QMYSQL");
 	bddMySQL->connecter("projetQt", "superuser", "superuser", "192.168.65.10");
-
-
 }
 
 // Lorsqu'un client se connecte, on affiche le message un client s'est connecter et on se préparer à écouter ses messages ou déconnexion
@@ -36,7 +34,6 @@ void TcpServer::onServerNewConnection()
 
 	QObject::connect(client, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
 	QObject::connect(client, SIGNAL(disconnected()), this, SLOT(onClientDisconnected()));
-	QObject::connect(client, SIGNAL(readyRead()), this, SLOT(sqlConnect()));
 }
 
 // Lorsque le client se déconnecter, on déconnecte le socket et on supprime l'objet
@@ -69,16 +66,6 @@ void TcpServer::onClientReadyRead()
 		if ((*it).isObject())
 		{
 			QJsonObject object = (*it).toObject();
-			/*for (auto it = object.begin(); it != object.end(); it++)
-			{
-				qDebug() << (*it);
-			}*/
-
-			/*QString test = object.value("pseudo").toVariant().toString();
-			if (test == "10")
-			{
-				ui.connectionStatusLabel->setText(test);
-			}*/
 
 			QString method = object.value("Method").toVariant().toString();
 			/*  1 = login / 2 = sendMessage / 3 = method
@@ -146,7 +133,6 @@ void TcpServer::onClientReadyRead()
 				else {
 					obj->write("register.error");
 				}
-
 			}
 
 			if (method == "4") {
@@ -155,13 +141,47 @@ void TcpServer::onClientReadyRead()
 				QString username = object.value("username").toVariant().toString();
 
 				QString requete;
-				requete = "SELECT username FROM user WHERE username = '" + username + "'";
+				/*requete = "SELECT * FROM user WHERE username = '" + username + "'";
 				QStringList values;
-				retour = bddMySQL->recuperer(requete, values);
+				retour = bddMySQL->recuperer(requete, values);*/
 
+				QString retour = true;
+				
 				if (retour == true) {
 					// On peut récupèrer les chat
-					obj->write("login.ok");
+					requete = "SELECT text, heure, username FROM chat ORDER BY id ASC";
+					QStringList values;
+					retour = bddMySQL->recuperer(requete, values);
+
+					if (retour == true) {
+						ui.connectionStatusLabel->setText("req ok");
+						// Ici on va envoyer les messages au client au format JSON
+						QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC");
+						// for(/*initialisation*/ int i=1; /*condition*/ i<=10; /*incrémentation*/ ++i)
+						while (query.next()) {
+							QString text = query.value("text").toString();
+							QString heure = query.value("heure").toString();
+							QString username = query.value("username").toString();
+
+							QJsonObject levan{
+								{"Method",2},
+								{"username",username},
+								{"message",text},
+								{"heure",heure},
+							};
+
+							QJsonArray jsarray{ levan };
+							QJsonDocument jsDoc(jsarray);
+
+							QString jsString = QString::fromLatin1(jsDoc.toJson());
+
+							obj->write(jsString.toLatin1());
+
+						}
+					}
+					else {
+						obj->write("getMsg.error");
+					}
 				}
 			}
 		}
