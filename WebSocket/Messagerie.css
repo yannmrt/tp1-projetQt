@@ -36,6 +36,60 @@ body {
     display: none;
 }
 
-.FormulaireConnexion{
+.FormulaireInscription{
     display: none;
+}
+
+section.login{
+    display: flex;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+section.login > div{
+    width: 450px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+section.login form{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    text-decoration: none;
+    margin-right: 0.625%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+section.test{
+    display: flex;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+section.test > div{
+    width: 450px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+section.test form{
+    display: flex;
 }

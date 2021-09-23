@@ -5,45 +5,34 @@
     <link rel="stylesheet" href="Messagerie.css">
 </head>
 <body>
-        <div class="FormulaireInscription"> 
+      <section class="login">
+          <div class="FormulaireConnexion" id="FormulaireConnexion"> 
+            <form id="Connexion" method="POST" action="">
+                <label for="usernameConnexion">Nom d'utilisateur</label>
+                  <input type="text" id="usernameConnexion"name="usernameConnexion" placeholder="Votre nom d'utilisateur">
+                
+                <label for="passwordConnexion">Mot de passe</label>
+                  <input type="password" id="passwordConnexion" name="passwordConnexion" placeholder="Votre mot de passe">
+                  <button id="ShowConnexion" onclick="afficheInscription(FormulaireConnexion)">Page Inscription</button>
+                <button type="submit">Connexion</button>
+            </form>
+          </div>
+      </section>
+      
+      <section class="login">
+        <div class="FormulaireInscription" id="FormulaireInscription"> 
           <form id="Inscription" method="POST" action="">
-            <div align="center">
-              <div>
-                  <label for="username">Nom d'utilisateur</label>
-                  <div>
-                      <input type="text" class="form-control" id="usernameInscription"name="usernameInscription" placeholder="Votre nom d'utilisateur">
-                  </div>
-              </div>
-              <div>
-                  <label for="password">Mot de passe</label>
-                  <div>
-                      <input type="password" class="form-control" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
-                  </div>
-              </div>
-              <button type="submit">Connexion</button>
-            </div>
+                  <label for="usernameInscription">Nom d'utilisateur</label>
+                      <input type="text" id="usernameInscription"name="usernameInscription" placeholder="Votre nom d'utilisateur">
+        
+                  <label for="passwordInscription">Mot de passe</label>
+                      <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
+                      <input type="password" id="passwordInscriptionConfirm" name="passwordInscriptionConfirm" placeholder="Confirmer votre mot de passe">
+              <button id="ShowInscription" onclick="afficheConnexion(FormulaireInscription)">Page Connexion</button>
+              <button type="submit">Inscription</button>
           </form>
         </div>
-
-        <div class="FormulaireConnexion"> 
-          <form id="Connexion" method="POST" action="">
-            <div align="center">
-              <div>
-                  <label for="username">Nom d'utilisateur</label>
-                  <div>
-                      <input type="text" class="form-control" id="usernameConnexion"name="usernameConnexion" placeholder="Votre nom d'utilisateur">
-                  </div>
-              </div>
-              <div>
-                  <label for="password">Mot de passe</label>
-                  <div>
-                      <input type="password" class="form-control" id="passwordConnexion" name="passwordConnexion" placeholder="Votre mot de passe">
-                  </div>
-              </div>
-              <button type="submit">Connexion</button>
-            </div>
-          </form>
-        </div>
+      </section>
 
     <div class="MessageBox">
         <ul id="Message"></ul>
@@ -58,22 +47,38 @@
 <script src="WebSocket.js"></script>
 <script>
 
-  document.getElementById("Inscription").addEventListener("submit", function(e){
-    e.preventDefault();
-    var usernameInscription = document;getElementById("usernameInscription")
-    var MdpInscription = document.getElementById("passwordInscription");
+    
+    
+    function afficheConnexion(id){
+    document.getElementById('FormulaireConnexion').style.display='block';
+    document.getElementById('FormulaireInscription').style.display='none';
+    }
 
-    if (!usernameInscription.value){
+    function afficheInscription(id){
+    document.getElementById('FormulaireInscription').style.display='block';
+    document.getElementById('FormulaireConnexion').style.display='none';
+    }
+  
+
+  document.getElementById("FormulaireInscription").addEventListener("submit", function(e){
+    e.preventDefault();
+    var usernameInscription = document.getElementById("usernameInscription")
+    var MdpInscription = document.getElementById("passwordInscription");
+    var MdpInscriptionConfirm = document.getElementById("passwordInscriptionConfirm");
+
+    if (usernameInscription.value = ""){
       erreur = "Veullez entrer un nom d'utilisateur";
     }
     if (!MdpInscription.value){
       erreur = "Veuillez entrer un mot de passe";
     }
+    if (MdpInscription = MdpInscriptionConfirm)
+    erreur = "tout va bien";
   })
 
-  document.getElementById("Connexion").addEventListener("submit", function(e){
+  document.getElementById("FormulaireConnexion").addEventListener("submit", function(e){
     e.preventDefault();
-    var usernameConnexion = document;getElementById("usernameConnexion")
+    var usernameConnexion = document.getElementById("usernameConnexion")
     var MdpConnexion = document.getElementById("passwordConnexion");
 
     if (!usernameConnexion.value){
