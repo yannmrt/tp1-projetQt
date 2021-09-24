@@ -1,0 +1,29 @@
+
+SEND MSG
+[{
+"Method":2,
+"username":"yann",
+"message":"test1234"
+}]
+
+CONNECT USER
+
+[{
+"Method":1,
+"username":"yann",
+"password":"yann"
+}]
+
+
+INSCRIPTION
+[{
+"Method":3,
+"username":"greg",
+"password":"greg"
+}]
+
+GET MSG
+[{
+"Method":4,
+"username":"greg"
+}]
