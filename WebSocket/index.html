@@ -13,13 +13,13 @@
                 
                 <label for="passwordConnexion">Mot de passe</label>
                   <input type="password" id="passwordConnexion" name="passwordConnexion" placeholder="Votre mot de passe">
-                  <button id="ShowConnexion" onclick="afficheInscription(FormulaireConnexion)">Page Inscription</button>
-                <button type="submit">Connexion</button>
+                  <button id="ShowConnexion" onclick="afficheInscription()">Page Inscription</button>
+                <button type="submit" onclick="connexion()">Connexion</button>
             </form>
           </div>
       </section>
       
-      <section class="login">
+      <section class="inscription">
         <div class="FormulaireInscription" id="FormulaireInscription"> 
           <form id="Inscription" method="POST" onsubmit="return false">
                   <label for="usernameInscription">Nom d'utilisateur</label>
@@ -27,8 +27,8 @@
         
                   <label for="passwordInscription">Mot de passe</label>
                       <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
-              <button id="ShowInscription" onclick="afficheConnexion(FormulaireInscription)">Page Connexion</button>
-              <button type="submit">Inscription</button>
+              <button id="ShowInscription" onclick="afficheConnexion()">Page Connexion</button>
+              <button type="submit" onclick="inscription()">Inscription</button>
           </form>
         </div>
       </section>
@@ -43,50 +43,28 @@
 
 </body>
 
+<script>
+
+  let UserCorrect;
+
+</script>
+
 <script src="WebSocket.js"></script>
 <script>
 
     
     
-    function afficheConnexion(id){
-    document.getElementById('FormulaireConnexion').style.display='block';
-    document.getElementById('FormulaireInscription').style.display='none';
+    function afficheConnexion(){
+    document.querySelector('.login').style.display='flex';
+    document.querySelector('.inscription').style.display='none';
     }
 
-    function afficheInscription(id){
-    document.getElementById('FormulaireInscription').style.display='block';
-    document.getElementById('FormulaireConnexion').style.display='none';
+    function afficheInscription(){
+    document.querySelector('.login').style.display='none';
+    document.querySelector('.inscription').style.display='flex';
     }
   
 
-  document.getElementById('FormulaireInscription').addEventListener('submit', function(e){
-    e.preventDefault();
-    var usernameInscription = document.getElementById('usernameInscription')
-    var MdpInscription = document.getElementById('passwordInscription');
-    var MdpInscriptionConfirm = document.getElementById('passwordInscriptionConfirm');
-
-    if (usernameInscription.value = ""){
-      erreur = "Veullez entrer un nom d'utilisateur";
-    }
-    if (!MdpInscription.value){
-      erreur = "Veuillez entrer un mot de passe";
-    }
-    if (MdpInscription = MdpInscriptionConfirm)
-    erreur = "tout va bien";
-  })
-
-  document.getElementById("FormulaireConnexion").addEventListener("submit", function(e){
-    e.preventDefault();
-    var usernameConnexion = document.getElementById("usernameConnexion")
-    var MdpConnexion = document.getElementById("passwordConnexion");
-
-    if (!usernameConnexion.value){
-      erreur = "Veullez entrer un nom d'utilisateur";
-    }
-    if (!MdpConnexion.value){
-      erreur = "Veuillez entrer un mot de passe";
-    }
-  })
 
   function auto_height(elem) {  
     elem.style.height = "75%";
@@ -94,41 +72,43 @@
   }
 
   function inscription() {
-  var inscription = {
-    method: "",
+  var inscription = [{
+    Method: 3,
     username: document.getElementById("usernameInscription").value,
     password: document.getElementById("passwordInscription").value,
     
-    
-  };
+  }];
 
-  socket.send(JSON.stringify(msg));
+  socket.send(JSON.stringify(inscription));
 
   return false;
   }
 
 function connexion() {
-  var userconnexion = {
-    method: "1",
+  var userconnexion = [{
+    Method: 1,
     username: document.getElementById("usernameConnexion").value,
     password: document.getElementById("passwordConnexion").value,
     
     
-  };
+  }];
 
-  socket.send(JSON.stringify(msg));
+  socket.send(JSON.stringify(userconnexion));
+
+  console.log( event.data);
+
 
   return false;
 }
 
 function sendText() {
-  var msg = {
-    method: "2",
-    username:   clientID,
+  var msg = [{
+    Method: 2,
+    //username: ,
     message: document.getElementById("textBox").value,
     
     
-  };
+  }];
 
   socket.send(JSON.stringify(msg));
   

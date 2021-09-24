@@ -10,12 +10,21 @@ socket.addEventListener('open', function (event) {
 // Écouter les messages
 socket.addEventListener('message', function (event) {
   console.log('Voici un message du serveur', event.data);
-  if(event.data = "login.ok"){
-    document.getElementById('FormulaireInscription').style.display='none';
-    document.getElementById('FormulaireConnexion').style.display='none';
-    document.getElementById('textBox').style.display='flex';
-    var UserCorrect = document.getElementById("usernameInscription").value;
+  
+  if(event.data = "register.ok"){
+    document.querySelector('.inscription').style.display='none';
+    document.querySelector('.login').style.display='block';
+
   }
+
+  if(event.data === "login.ok"){  
+    document.querySelector('.inscription').style.display='none';
+    document.querySelector('.login').style.display='none';
+    document.querySelector(".MessageBox").style.display='flex';
+    UserCorrect = document.getElementById("usernameConnexion").value;
+  }
+
+  
 });
 
 
