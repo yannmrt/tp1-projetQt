@@ -95,22 +95,20 @@ function connexion() {
 
   socket.send(JSON.stringify(userconnexion));
 
-  console.log( event.data);
-
-
   return false;
 }
 
-function sendText() {
+function sendText(UserCorrect) {
   var msg = [{
     Method: 2,
-    //username: ,
+    username: UserCorrect,
     message: document.getElementById("textBox").value,
     
     
   }];
 
   socket.send(JSON.stringify(msg));
+  console.log(JSON.stringify(msg.username));
   
   document.getElementById("textBox").value = "";
 

@@ -1,17 +1,12 @@
 // Créer une connexion WebSocket
 const socket = new WebSocket('ws://192.168.65.230:168');
 
-/*
-// La connexion est ouverte
-socket.addEventListener('open', function (event) {
- socket.send('truc');
-});
-*/
+
 // Écouter les messages
 socket.addEventListener('message', function (event) {
   console.log('Voici un message du serveur', event.data);
   
-  if(event.data = "register.ok"){
+  if(event.data === "register.ok"){
     document.querySelector('.inscription').style.display='none';
     document.querySelector('.login').style.display='block';
 
@@ -23,6 +18,9 @@ socket.addEventListener('message', function (event) {
     document.querySelector(".MessageBox").style.display='flex';
     UserCorrect = document.getElementById("usernameConnexion").value;
   }
+
+  
+  
 
   
 });
