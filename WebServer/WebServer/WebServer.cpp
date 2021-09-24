@@ -167,15 +167,6 @@ void WebServer::processTextMessage(QString message)
 	}
 }
 
-void WebServer::processBinaryMessage(QByteArray message)
-{
-	QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
-
-	//pClient->sendBinaryMessage(message);
-
-}
-
-
 // Déconnexion du client
 void WebServer::socketDisconnected()
 {
