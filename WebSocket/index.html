@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="Messagerie.css">
 </head>
 <body>
+
+      <!-- Formulaire de connexion-->
       <section class="login">
           <div class="FormulaireConnexion" id="FormulaireConnexion"> 
             <form id="Connexion" method="POST" onsubmit="return false">
@@ -19,6 +21,7 @@
           </div>
       </section>
       
+      <!--   Formulaire d'incription-->
       <section class="inscription">
         <div class="FormulaireInscription" id="FormulaireInscription"> 
           <form id="Inscription" method="POST" onsubmit="return false">
@@ -53,12 +56,13 @@
 <script>
 
     
-    
+    /* Fonction pour faire apparaitre le formulaire de connexion*/
     function afficheConnexion(){
     document.querySelector('.login').style.display='flex';
     document.querySelector('.inscription').style.display='none';
     }
 
+    /* Fonction pour faire apparaitre le formulaire d'incription*/
     function afficheInscription(){
     document.querySelector('.login').style.display='none';
     document.querySelector('.inscription').style.display='flex';
@@ -66,25 +70,36 @@
   
 
 
+
+
   function auto_height(elem) {  
     elem.style.height = "75%";
     elem.style.height = (elem.scrollHeight)+"px";
   }
 
-  function inscription() {
-  var inscription = [{
-    Method: 3,
-    username: document.getElementById("usernameInscription").value,
-    password: document.getElementById("passwordInscription").value,
-    
-  }];
 
+
+  function inscription() {
+    
+    /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
+    var inscription = [{
+      Method: 3,
+      username: document.getElementById("usernameInscription").value,
+      password: document.getElementById("passwordInscription").value,
+      
+    }];
+  
+  /*Envoie du Message JSON vers le serveur WebSocket*/
   socket.send(JSON.stringify(inscription));
 
   return false;
   }
 
+
+
 function connexion() {
+
+  /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
   var userconnexion = [{
     Method: 1,
     username: document.getElementById("usernameConnexion").value,
@@ -93,27 +108,54 @@ function connexion() {
     
   }];
 
+  /*Envoie du Message JSON vers le serveur WebSocket*/
   socket.send(JSON.stringify(userconnexion));
 
   return false;
 }
 
-function sendText(UserCorrect) {
-  var msg = [{
-    Method: 2,
-    username: UserCorrect,
-    message: document.getElementById("textBox").value,
-    
-    
-  }];
 
-  socket.send(JSON.stringify(msg));
-  console.log(JSON.stringify(msg[0].username));
+var Chat = document.getElementById('Message');
+
+
+function sendText(UserCorrect) {
+
+  /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
+  var msg = {
+    Method: 2,
+    "username" : UserCorrect,
+    "message" : document.getElementById("textBox").value,
+  };
+
+  /*Je vérifie que l'utilisateur est connecté*/
+  if(!msg.username == null){
+
+    /*J'envoie le message au format JSON au serveur afin qu'il puisse être stocké en BDD*/
+    socket.send(JSON.stringify(msg));
+
+    /*Je crée chaque message comme un 'li' afin de les afficher facilement dans une liste*/
+    var MessageListe = document.createElement('li');
+
+    /*J'affecte mon User et son message dans une variable*/
+    MessageListe.textContent = msg.username + " : " + msg.message;
+
+    /*
+      Chat = document.getElementById('Message')
+      Je crée une nouvelle ligne dans ma liste a chaque
+    */
+    Chat.appendChild(MessageListe);
+    window.scrollTo(0, document.body.scrollHeight);
+
+  }else{
+    alert('Veulliez vous connecter pour commencer un chat');
+  }
   
   document.getElementById("textBox").value = "";
 
   return false;
 }
+
+
 
 </script>
 </html>
