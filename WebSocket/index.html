@@ -30,6 +30,7 @@
         
                   <label for="passwordInscription">Mot de passe</label>
                       <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
+                      <input type="password" id="ConfirmpasswordInscription" name="ConfirmpasswordInscription" placeholder="Entrer à nouveaux votre mot de passe">
               <button id="ShowInscription" onclick="afficheConnexion()">Page Connexion</button>
               <button type="submit" onclick="inscription()">Inscription</button>
           </form>
@@ -80,38 +81,61 @@
 
 
   function inscription() {
-    
-    /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
-    var inscription = [{
-      Method: 3,
-      username: document.getElementById("usernameInscription").value,
-      password: document.getElementById("passwordInscription").value,
-      
-    }];
-  
-  /*Envoie du Message JSON vers le serveur WebSocket*/
-  socket.send(JSON.stringify(inscription));
+    VerifUsername = document.getElementById("usernameInscription").value;
+    VerifPassword =  document.getElementById("passwordInscription").value;
+    VerifConfirmPassword =  document.getElementById("ConfirmpasswordInscription").value;
 
-  return false;
+    if(VerifUsername == ""){
+      alert("Veulillez rentrer un nom d'utilisateur");
+    }else if (VerifPassword == "" || VerifConfirmPassword == ""){
+      alert("Certain champ de mot de passe ne sont pas remplies")
+    }else if(VerifPassword != VerifConfirmPassword){
+      alert("Les mots de passes ne sont pas les mêmes")
+    }else{
+      /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
+      var inscription = [{
+        Method: 3,
+        username: document.getElementById("usernameInscription").value,
+        password: document.getElementById("passwordInscription").value,
+        
+      }];
+    
+      /*Envoie du Message JSON vers le serveur WebSocket*/
+      socket.send(JSON.stringify(inscription));
+
+      return false;
+    }
   }
 
 
 
 function connexion() {
+    VerifUsername = document.getElementById("usernameConnexion").value;
+    VerifPassword =  document.getElementById("passwordConnexion").value;
 
-  /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
-  var userconnexion = [{
-    Method: 1,
-    username: document.getElementById("usernameConnexion").value,
-    password: document.getElementById("passwordConnexion").value,
-    
-    
-  }];
+  if(VerifUsername == ""){
 
-  /*Envoie du Message JSON vers le serveur WebSocket*/
-  socket.send(JSON.stringify(userconnexion));
+    alert("Veulillez rentrer un nom d'utilisateur");
 
-  return false;
+  }else if (VerifPassword == "" ){
+
+    alert("Veulillez rentrer un mot de passe");
+
+  }else{
+    /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
+    var userconnexion = [{
+      Method: 1,
+      username: document.getElementById("usernameConnexion").value,
+      password: document.getElementById("passwordConnexion").value,
+      
+      
+    }];
+
+    /*Envoie du Message JSON vers le serveur WebSocket*/
+    socket.send(JSON.stringify(userconnexion));
+
+    return false;
+  }
 }
 
 
