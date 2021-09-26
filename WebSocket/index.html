@@ -86,12 +86,19 @@
     VerifConfirmPassword =  document.getElementById("ConfirmpasswordInscription").value;
 
     if(VerifUsername == ""){
+
       alert("Veulillez rentrer un nom d'utilisateur");
+
     }else if (VerifPassword == "" || VerifConfirmPassword == ""){
+
       alert("Certain champ de mot de passe ne sont pas remplies")
+
     }else if(VerifPassword != VerifConfirmPassword){
+
       alert("Les mots de passes ne sont pas les mêmes")
+
     }else{
+
       /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
       var inscription = [{
         Method: 3,
@@ -133,6 +140,7 @@ function connexion() {
 
     /*Envoie du Message JSON vers le serveur WebSocket*/
     socket.send(JSON.stringify(userconnexion));
+    getText(UserCorrect);
 
     return false;
   }
@@ -179,7 +187,18 @@ function sendText(UserCorrect) {
   return false;
 }
 
+function getText(UserCorrect) {
 
+/*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
+var msg = {
+  Method: 4,
+  "username" : UserCorrect,
+};
+
+socket.send(JSON.stringify(msg));
+
+return false;
+}
 
 </script>
 </html>

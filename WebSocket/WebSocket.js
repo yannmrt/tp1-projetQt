@@ -7,15 +7,12 @@ socket.addEventListener('message', function (event) {
   console.log('Voici un message du serveur', event.data);
   
   /*Si le server m'anonce que l'enregistrement est ok alors je vais afficher le formulaire de connexion*/
-  if(event.data === "register.ok"){
+  if(event.data.includes("register.ok")){
     document.querySelector('.inscription').style.display='none';
     document.querySelector('.login').style.display='block';
-  }else{
-    alert("Imposible de vous inscrire");
-  }
 
   /*Si le server m'anonce que la connexion est ok alors je cache tout et j'affiche la boite de discusion*/
-  if(event.data === "login.ok"){  
+  } else if(event.data.includes("login.ok") ){  
     document.querySelector('.inscription').style.display='none';
     document.querySelector('.login').style.display='none';
     document.querySelector(".MessageBox").style.display='flex';
@@ -24,8 +21,15 @@ socket.addEventListener('message', function (event) {
     UserCorrect = document.getElementById("usernameConnexion").value;
   }
 
-  
-  
+  if(!event.data.includes("login.ok") && !event.data.includes("register.ok")){
 
+    var Chat = document.getElementById('Message');
+
+    var MessageListe = document.createElement('li');
+    MessageListe.textContent = event.data;
+    Chat.appendChild(MessageListe);
+    window.scrollTo(0, document.body.scrollHeight);
+
+  }
   
 });
