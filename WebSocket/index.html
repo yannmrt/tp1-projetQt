@@ -40,7 +40,7 @@
     <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" onsubmit="return false">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText()">Envoyer</button>
+          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button>
         </form>
     </div>
 
@@ -49,7 +49,7 @@
 
 <script>
 
-  let UserCorrect;
+  let UserCorrect = "jetebz";
 
 </script>
 
@@ -134,8 +134,7 @@ function connexion() {
       Method: 1,
       username: document.getElementById("usernameConnexion").value,
       password: document.getElementById("passwordConnexion").value,
-      
-      
+        
     }];
 
     /*Envoie du Message JSON vers le serveur WebSocket*/
@@ -154,13 +153,13 @@ function sendText(UserCorrect) {
 
   /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
   var msg = {
-    Method: 2,
+    "Method": 2,
     "username" : UserCorrect,
     "message" : document.getElementById("textBox").value,
   };
-
+  
   /*Je vérifie que l'utilisateur est connecté*/
-  if(!msg.username == null){
+  if( UserCorrect ){
 
     /*J'envoie le message au format JSON au serveur afin qu'il puisse être stocké en BDD*/
     socket.send(JSON.stringify(msg));

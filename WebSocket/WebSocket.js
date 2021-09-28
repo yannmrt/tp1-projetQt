@@ -13,12 +13,14 @@ socket.addEventListener('message', function (event) {
 
   /*Si le server m'anonce que la connexion est ok alors je cache tout et j'affiche la boite de discusion*/
   } else if(event.data.includes("login.ok") ){  
+
+    /*Comme le login est correct, je vais attribuez la valeur de usernameConnexion pour la réutilisez*/
+    UserCorrect = document.getElementById("usernameConnexion").value;
+
     document.querySelector('.inscription').style.display='none';
     document.querySelector('.login').style.display='none';
     document.querySelector(".MessageBox").style.display='flex';
 
-    /*Comme le login est correct, je vais attribuez la valeur de usernameConnexion pour la réutilisez*/
-    UserCorrect = document.getElementById("usernameConnexion").value;
   }
 
   if(!event.data.includes("login.ok") && !event.data.includes("register.ok")){
