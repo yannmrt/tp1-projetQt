@@ -28,6 +28,7 @@ void WebServer::newConnection()
 	QWebSocket *pSocket = m_pWebSocketServer->nextPendingConnection();
 		
 	QObject::connect(pSocket, &QWebSocket::textMessageReceived, this, &WebServer::processTextMessage);
+	QObject::connect(pSocket, &QWebSocket::binaryMessageReceived, this, &WebServer::processBinaryMessage);
 	QObject::connect(pSocket, &QWebSocket::disconnected, this, &WebServer::socketDisconnected);
 
 }
@@ -165,6 +166,9 @@ void WebServer::processTextMessage(QString message)
 			}
 		}
 	}
+}
+
+void WebServer::processBinaryMessage() {
 }
 
 // Déconnexion du client

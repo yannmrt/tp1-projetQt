@@ -64,13 +64,13 @@ static const uint qt_meta_data_WebServer[] = {
        1,    0,   34,    2, 0x0a /* Public */,
        3,    1,   35,    2, 0x0a /* Public */,
        5,    0,   38,    2, 0x0a /* Public */,
-       6,    1,   39,    2, 0x0a /* Public */,
+       6,    0,   39,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    4,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QByteArray,    4,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -84,7 +84,7 @@ void WebServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->newConnection(); break;
         case 1: _t->processTextMessage((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->socketDisconnected(); break;
-        case 3: _t->processBinaryMessage((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 3: _t->processBinaryMessage(); break;
         default: ;
         }
     }

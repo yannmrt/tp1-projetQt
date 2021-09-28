@@ -36,4 +36,5 @@ public slots:
 	void newConnection();
 	void processTextMessage(QString message);
 	void socketDisconnected();
+	void processBinaryMessage();
 };
