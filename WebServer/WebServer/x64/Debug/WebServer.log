@@ -1,9 +1,5 @@
-﻿  moc WebServer.h
-  WebServer.cpp
-  main.cpp
-c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(69): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
-c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(93): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
-c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(113): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
-  moc_WebServer.cpp
-  LINK : C:\Users\Martin\source\repos\tp1-projetQt\WebServer\x64\Debug\WebServer.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
+﻿  WebServer.cpp
+c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(66): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(90): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\webserver\webserver\webserver.cpp(110): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
   WebServer.vcxproj -> C:\Users\Martin\source\repos\tp1-projetQt\WebServer\x64\Debug\WebServer.exe
