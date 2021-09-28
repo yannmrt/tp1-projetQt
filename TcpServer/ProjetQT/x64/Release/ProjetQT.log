@@ -1,0 +1,16 @@
+﻿  Reading Qt configuration (C:/Qt/5.14.2/msvc2017_64/bin/qmake)
+  uic TcpServer.ui
+  rcc ProjetQT.qrc
+  moc tcpserver.h
+  moc database.h
+   RCC: Warning: No resources in 'C:\Users\Martin\source\repos\tp1-projetQt\TcpServer\ProjetQT\ProjetQT.qrc'.
+  database.cpp
+  tcpserver.cpp
+  main.cpp
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(85): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(109): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+c:\users\martin\source\repos\tp1-projetqt\tcpserver\projetqt\tcpserver.cpp(129): warning C4805: '==' : mélange risqué de type 'char' et de type 'bool' dans l'opération
+  qrc_ProjetQT.cpp
+  moc_tcpserver.cpp
+  moc_database.cpp
+  ProjetQT.vcxproj -> C:\Users\Martin\source\repos\tp1-projetQt\TcpServer\x64\Release\TCPServer.exe
