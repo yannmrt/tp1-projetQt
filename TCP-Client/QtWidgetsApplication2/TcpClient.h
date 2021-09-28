@@ -22,12 +22,12 @@ public:
 private:
     Ui::projetmortClass ui;
 	QTcpSocket * socket;
-	int init = 0;
+	int init = 0; //permet d'initaliser la connexion
 	char mess = 10;
-	QString pseudo;
+	QString pseudo; //permet de sauvegarder le pseudo
 
 
-private slots:
+private slots: //les differente fonction décrite dans le .cpp
 	void connexion();
 	void onSocketDisonnected();
 	void onSocketConnected();

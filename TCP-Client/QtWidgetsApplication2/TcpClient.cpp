@@ -16,39 +16,15 @@ TcpCLient::TcpCLient(QWidget *parent)
 	ui.lineEdit->setVisible(false);
 	ui.pushButton_2->setVisible(false);
 	ui.test->setVisible(false);
-
-
-
-
-	/*QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("192.168.65.83");
-	db.setUserName("lowrance");
-	db.setPassword("azerty");
-	db.setDatabaseName("Lawrence");
-	if (db.open())
-	{
-		ui.SQL->setText("co");
-	}
-	else
-	{
-		ui.SQL->setText("pasco");
-	}*/
+	//Au debut du code initalisation et connection au serveur.
 
 }
 
-void TcpCLient::connexion()
+void TcpCLient::connexion() //Connexion et verification coté serveur
 {
 	pseudo = ui.nom->text();
 	QString port = ui.mdp->text();
 
-	/*socket->write(nom.toStdString().c_str());
-	socket->write(":");
-	socket->write(port.toStdString().c_str());
-
-	QByteArray string = port.toStdString().c_str();
-	QCryptographicHash *hash = new QCryptographicHash(QCryptographicHash::Md4);
-	hash->addData(string);
-	QByteArray string1 = hash->result();*/
 
 	QJsonObject levan{
 {"Method",1},
@@ -64,14 +40,13 @@ void TcpCLient::connexion()
 	socket->write(jsString.toLatin1());
 
 }
-void TcpCLient::onSocketConnected()
+void TcpCLient::onSocketConnected() //si la connection est aquise on écrit "connexion ok" dans la zone de texte
 {
 	ui.co->setText("Connexion Ok");
-	//socket->write("test");
 
 }
 
-void TcpCLient::onSocketDisonnected()
+void TcpCLient::onSocketDisonnected()  //si l'user des deconnecter on écrit "déconnecté" dans la zone de texte
 {
 	ui.co->setText("deconnecter");
 	ui.nom->setVisible(false);
@@ -86,8 +61,9 @@ void TcpCLient::onSocketDisonnected()
 	ui.test2->setVisible(false);
 	ui.insc->setVisible(false);
 	ui.labelinsc->setVisible(false);
+	ui.messagesend->setVisible(false);
 }
-void TcpCLient::messageserver()
+void TcpCLient::messageserver() //cette fonction permet d'envoyer un message avec le nom d'utilisateur et le message sous format json
 {
 	if (socket->state() == QTcpSocket::ConnectedState)
 	{
@@ -107,25 +83,20 @@ void TcpCLient::messageserver()
 
 		socket->write(jsString.toLatin1());
 		ui.lineEdit->clear();
-		//socket->write(documentJSON);
-		//socket->write(msg.toStdString().c_str());
 	}
 	else
 	{
 		ui.messagesend->setText("message non envoye.");
-		//ui.test->setText("message recu: " + str);
 	}
 
 
 }
-void TcpCLient::messagerecu()
+void TcpCLient::messagerecu()//cette fonction est importante, elle permet de recevoir les incformations donnée par le serveur et les trier.
 {
 	QByteArray data = socket->read(socket->bytesAvailable());
 	QString str(data);
 	if (init == 0) {
-		//ui.test->setText("message recu: " + str);
 		if (str == "login.ok") {
-			//ui.test->setText("message recu: " + str);
 			ui.nom->setVisible(false);
 			ui.mdp->setVisible(false);
 			ui.label_2->setVisible(false);
@@ -178,8 +149,6 @@ void TcpCLient::messagerecu()
 
 		QString jsString = QString::fromLatin1(jsDoc.toJson());
 		socket->write(jsString.toLatin1());
-		//ui.test->insertPlainText("message envoyer + afficher le message avec le peudo");
-		//ui.test->insertPlainText(str);
 		ui.test->QTextEdit::clear();
 	}
 
@@ -189,7 +158,6 @@ void TcpCLient::messagerecu()
 		ui.test->insertPlainText("message non envoyer.");
 	}
 	else {
-		//ui.test->insertPlainText("gros probleme");
 		ui.test->insertPlainText(str);
 		ui.test->verticalScrollBar()->setValue(ui.test->verticalScrollBar()->maximum());
 	}
@@ -197,18 +165,10 @@ void TcpCLient::messagerecu()
 }
 
 
-void TcpCLient::incri() {
+void TcpCLient::incri() { //fonction qui permet de s'inscrire.
 	pseudo = ui.nom->text();
 	QString port = ui.mdp->text();
 
-	/*socket->write(nom.toStdString().c_str());
-	socket->write(":");
-	socket->write(port.toStdString().c_str());
-
-	QByteArray string = port.toStdString().c_str();
-	QCryptographicHash *hash = new QCryptographicHash(QCryptographicHash::Md4);
-	hash->addData(string);
-	QByteArray string1 = hash->result();*/
 
 	QJsonObject levan{
 {"Method",3},
@@ -227,47 +187,3 @@ void TcpCLient::incri() {
 
 
 
-
-
-/*res["method"] = "login";
-res["username"] = "username";
-res["password"] = fkezfe;*/
-
-
-/*
-//debut
-
-		QTcpSocket * socket = qobject_cast<QTcpSocket*>(sender());
-		QByteArray data = socket->read(socket->bytesAvailable() < 64 ? 64 : socket->bytesAvailable());
-		QString str(data);
-
-		//QString str = this->socket->readAll();
-		QJsonDocument jsonResponse(QJsonDocument::fromJson(data));
-		QJsonArray & array = jsonResponse.array();
-
-		for (QJsonArray::iterator it = array.begin(); it != array.end(); it++)
-		{
-			if ((*it).isObject())
-			{
-				QJsonObject object = (*it).toObject();
-
-
-				QString method = object.value("Method").toVariant().toString();
-				//1 = login / 2 = sendMessage / 3 = method
-				
-
-if (method == "2") {
-	// Connexion de l'utilisateur
-	QString method = object.value("Method").toVariant().toString();
-	QString username = object.value("username").toVariant().toString();
-	QString message = object.value("message").toVariant().toString();
-	QString heure = object.value("heure").toVariant().toString();
-
-	ui.test->insertPlainText(username + message + heure);
-
-
-}
-			}
-		}
-
-		//fin */
