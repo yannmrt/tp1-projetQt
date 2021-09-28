@@ -154,8 +154,8 @@ function sendText(UserCorrect) {
   /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
   var msg = [{
     "Method": 2,
-    "username" : UserCorrect,
-    "message" : document.getElementById("textBox").value,
+    "username": UserCorrect,
+    "message": document.getElementById("textBox").value
   }];
   
   /*Je vérifie que l'utilisateur est connecté*/
@@ -168,7 +168,7 @@ function sendText(UserCorrect) {
     var MessageListe = document.createElement('li');
 
     /*J'affecte mon User et son message dans une variable*/
-    MessageListe.textContent = msg.username + " : " + msg.message;
+    MessageListe.textContent = msg[0].username + " : " + msg[0].message;
 
     /*
       Chat = document.getElementById('Message')
