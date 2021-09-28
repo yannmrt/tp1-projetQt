@@ -4,7 +4,7 @@ const socket = new WebSocket('ws://192.168.65.230:168');
 
 // Écouter les messages
 socket.addEventListener('message', function (event) {
-  console.log('Voici un message du serveur', event.data);
+  //console.log('Voici un message du serveur', event.data);
   
   /*Si le server m'anonce que l'enregistrement est ok alors je vais afficher le formulaire de connexion*/
   if(event.data.includes("register.ok")){
@@ -23,8 +23,7 @@ socket.addEventListener('message', function (event) {
 
   }
 
-  /*
-  if(!event.data.includes("login.ok") && !event.data.includes("register.ok")){
+  if(!event.data.includes("login.ok") && !event.data.includes("register.ok") && !event.data.includes("sendMsg.ok")){
 
     var Chat = document.getElementById('Message');
 
@@ -34,6 +33,5 @@ socket.addEventListener('message', function (event) {
     window.scrollTo(0, document.body.scrollHeight);
 
   }
-  */
   
 });

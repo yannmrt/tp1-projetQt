@@ -189,10 +189,10 @@ function sendText(UserCorrect) {
 function getText(UserCorrect) {
 
 /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
-var msg = {
-  Method: 4,
+var msg = [{
+  "Method": 4,
   "username" : UserCorrect,
-};
+}];
 
 socket.send(JSON.stringify(msg));
 
