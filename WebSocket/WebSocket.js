@@ -23,6 +23,7 @@ socket.addEventListener('message', function (event) {
 
   }
 
+  /*
   if(!event.data.includes("login.ok") && !event.data.includes("register.ok")){
 
     var Chat = document.getElementById('Message');
@@ -33,5 +34,6 @@ socket.addEventListener('message', function (event) {
     window.scrollTo(0, document.body.scrollHeight);
 
   }
+  */
   
 });
