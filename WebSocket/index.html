@@ -40,7 +40,7 @@
     <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" onsubmit="return false">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button>
+          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button><button onclick="getText(UserCorrect)">Actualiser</button>
         </form>
     </div>
 
@@ -194,6 +194,8 @@ var msg = [{
   "username" : UserCorrect,
 }];
 
+var myList = document.getElementById('Message');
+myList.innerHTML = '';
 socket.send(JSON.stringify(msg));
 
 return false;
