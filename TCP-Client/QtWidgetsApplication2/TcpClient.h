@@ -34,5 +34,5 @@ private slots: //les differente fonction décrite dans le .cpp
 	void messageserver();
 	void messagerecu();
 	void incri();
+	void actu();
 };
-

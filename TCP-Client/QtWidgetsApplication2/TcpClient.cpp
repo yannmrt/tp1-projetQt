@@ -16,6 +16,7 @@ TcpCLient::TcpCLient(QWidget *parent)
 	ui.lineEdit->setVisible(false);
 	ui.pushButton_2->setVisible(false);
 	ui.test->setVisible(false);
+	ui.actu->setVisible(false);
 	//Au debut du code initalisation et connection au serveur.
 
 }
@@ -62,6 +63,7 @@ void TcpCLient::onSocketDisonnected()  //si l'user des deconnecter on écrit "déc
 	ui.insc->setVisible(false);
 	ui.labelinsc->setVisible(false);
 	ui.messagesend->setVisible(false);
+	ui.actu->setVisible(false);
 }
 void TcpCLient::messageserver() //cette fonction permet d'envoyer un message avec le nom d'utilisateur et le message sous format json
 {
@@ -109,6 +111,7 @@ void TcpCLient::messagerecu()//cette fonction est importante, elle permet de rec
 			ui.test2->setVisible(false);
 			ui.insc->setVisible(false);
 			ui.labelinsc->setVisible(false);
+			ui.actu->setVisible(true);
 			init = 1;
 			QJsonObject levan{
 				{"Method",4},
@@ -185,5 +188,15 @@ void TcpCLient::incri() { //fonction qui permet de s'inscrire.
 
 }
 
+void TcpCLient::actu() {
+	QJsonObject levan{
+	{"Method",4,},
+	};
+	QJsonArray jsarray{ levan };
+	QJsonDocument jsDoc(jsarray);
 
+	QString jsString = QString::fromLatin1(jsDoc.toJson());
+	socket->write(jsString.toLatin1());
+	ui.test->QTextEdit::clear();
+}
 

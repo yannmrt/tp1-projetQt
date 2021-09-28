@@ -43,6 +43,7 @@ public:
     QPushButton *insc;
     QLabel *labelinsc;
     QLabel *label_4;
+    QPushButton *actu;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -111,6 +112,9 @@ public:
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(180, 10, 181, 81));
         label_4->setPixmap(QPixmap(QString::fromUtf8("../../../../Desktop/image.png")));
+        actu = new QPushButton(centralWidget);
+        actu->setObjectName(QString::fromUtf8("actu"));
+        actu->setGeometry(QRect(480, 210, 75, 23));
         projetmortClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(projetmortClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -127,6 +131,7 @@ public:
         QObject::connect(pushButton, SIGNAL(clicked()), projetmortClass, SLOT(connexion()));
         QObject::connect(pushButton_2, SIGNAL(clicked()), projetmortClass, SLOT(messageserver()));
         QObject::connect(insc, SIGNAL(clicked()), projetmortClass, SLOT(incri()));
+        QObject::connect(actu, SIGNAL(clicked()), projetmortClass, SLOT(actu()));
 
         QMetaObject::connectSlotsByName(projetmortClass);
     } // setupUi
@@ -146,6 +151,7 @@ public:
         insc->setText(QCoreApplication::translate("projetmortClass", "Incription", nullptr));
         labelinsc->setText(QString());
         label_4->setText(QString());
+        actu->setText(QCoreApplication::translate("projetmortClass", "Actualiser", nullptr));
     } // retranslateUi
 
 };
