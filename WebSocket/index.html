@@ -152,11 +152,11 @@ var Chat = document.getElementById('Message');
 function sendText(UserCorrect) {
 
   /*Je convertis mes information en JSON (Le résultat donne un tableaux)*/
-  var msg = {
+  var msg = [{
     "Method": 2,
     "username" : UserCorrect,
     "message" : document.getElementById("textBox").value,
-  };
+  }];
   
   /*Je vérifie que l'utilisateur est connecté*/
   if( UserCorrect ){
