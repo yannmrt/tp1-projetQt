@@ -23,6 +23,11 @@ socket.addEventListener('message', function (event) {
 
   }
 
+  else if(event.data.includes("login.error"))
+  {
+    alert('Impossible de vous connecter avec ces identifiants');
+  }
+
   if(!event.data.includes("login.ok") && !event.data.includes("register.ok") && !event.data.includes("sendMsg.ok")){
 
     var Chat = document.getElementById('Message');
