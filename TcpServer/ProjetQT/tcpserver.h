@@ -25,6 +25,7 @@ private:
 	QTcpServer * server;
 	QTcpSocket * socket;
 	BaseDeDonnees *bddMySQL;
+	QSqlDatabase *db;
 
 public slots: 
 	void onServerNewConnection();
