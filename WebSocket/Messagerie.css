@@ -37,58 +37,64 @@ body {
     display: none;
 }
 
+body{
+    display: flex;
+    justify-content:center;
+    flex-direction: columns;
+    align-items: center;
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+}
+form {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 10px;
+    min-width: 300px;
+}
+form h1{
+    color: #eb7371;
+    text-align:center;
+}
+
+form p.choose-email{
+    text-align:center;
+}
+form .inputs {
+    display: flex;
+    flex-direction: column;
+}
+form .inputs input[type='text'], input[type='password']{
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    background-color:#f2f2f2;
+    outline:none;
+    margin-bottom: 15px;
+}
+form p.PageInscription{
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #878787;
+    text-align:center;
+}
+form p.PageConnexion{
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #878787;
+    text-align:center;
+}
+form button{
+    padding: 15px 25px;
+    border-radius: 5px;
+    border:none;
+    font-size: 15px;
+    color: #fff;
+    background-color: #eb7371;
+    outline:none;
+    cursor:pointer;
+}
 
 section.login{
-    display: flex;
-    position: fixed;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-section.login > div{
-    width: 450px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-    background: #eee;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-section.login form{
-    display: flex;
-    flex-direction: column;
-}
-
-section.inscription{
-    display: flex;
-    position: fixed;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-section.inscription > div{
-    width: 450px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-    background: #eee;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-section.inscription form{
-    display: flex;
-    flex-direction: column;
-}
-
-button{
-    text-decoration: none;
-    margin-right: 0.625%;
-    text-align: center;
-    margin-top: 1%;
+    display: none;
 }
