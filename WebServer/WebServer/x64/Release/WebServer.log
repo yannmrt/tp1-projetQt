@@ -1,5 +1,5 @@
-﻿  moc WebServer.h
-  WebServer.cpp
+﻿  WebServer.cpp
   main.cpp
+  qrc_WebServer.cpp
   moc_WebServer.cpp
-  WebServer.vcxproj -> C:\Users\Martin\source\repos\tp1-projetQt\WebServer\x64\Release\WebServer.exe
+  WebServer.vcxproj -> C:\Users\Martin\Desktop\PROJET QT\tp1-projetQt\WebServer\x64\Release\WebServer.exe
