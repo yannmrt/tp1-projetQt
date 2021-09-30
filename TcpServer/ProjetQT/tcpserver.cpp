@@ -75,7 +75,8 @@ void TcpServer::onClientReadyRead()
 			db.setDatabaseName("projetQt");
 
 			if (!db.open()) {
-				ui.connectionStatusLabel->setText("Erreur de connexion à la bdd");
+				//ui.connectionStatusLabel->setText("Erreur de connexion à la bdd");
+				ui.connectionStatusLabel->setText(db.lastError().text());
 			}
 			else {
 
