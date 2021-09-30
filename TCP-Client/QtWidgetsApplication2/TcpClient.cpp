@@ -172,20 +172,26 @@ void TcpCLient::incri() { //fonction qui permet de s'inscrire.
 	pseudo = ui.nom->text();
 	QString port = ui.mdp->text();
 
+	if (pseudo == NULL) {
+		ui.labelinsc->setText("le champ et nul");
+	}
+	else if (port == NULL) {
+		ui.labelinsc->setText("entre un mot de passe");
+	}
+	else {
+		QJsonObject levan{
+		{"Method",3},
+		{"username",pseudo},
+		{"password",port},
+		};
 
-	QJsonObject levan{
-{"Method",3},
-{"username",pseudo},
-{"password",port},
-	};
+		QJsonArray jsarray{ levan };
+		QJsonDocument jsDoc(jsarray);
 
-	QJsonArray jsarray{ levan };
-	QJsonDocument jsDoc(jsarray);
+		QString jsString = QString::fromLatin1(jsDoc.toJson());
 
-	QString jsString = QString::fromLatin1(jsDoc.toJson());
-
-	socket->write(jsString.toLatin1());
-
+		socket->write(jsString.toLatin1());
+	}
 }
 
 void TcpCLient::actu() {
