@@ -41,7 +41,7 @@
     <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" onsubmit="return false">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button><button onclick="getText(UserCorrect)">Actualiser</button>
+          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button>
         </form>
     </div>
 
@@ -159,6 +159,7 @@ function sendText(UserCorrect) {
     "message": document.getElementById("textBox").value
   }];
   
+
   /*Je vérifie que l'utilisateur est connecté*/
   if( UserCorrect ){
 
@@ -176,7 +177,7 @@ function sendText(UserCorrect) {
       Je crée une nouvelle ligne dans ma liste a chaque
     */
     Chat.appendChild(MessageListe);
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.ul.scrollHeight);
 
   }else{
     alert('Veulliez vous connecter pour commencer un chat');
@@ -201,6 +202,10 @@ socket.send(JSON.stringify(msg));
 
 return false;
 }
+
+window. setInterval(function(){ 
+  getText(UserCorrect);
+}, 5000);
 
 </script>
 </html>
