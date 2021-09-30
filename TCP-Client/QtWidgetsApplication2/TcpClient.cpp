@@ -69,22 +69,30 @@ void TcpCLient::messageserver() //cette fonction permet d'envoyer un message ave
 {
 	if (socket->state() == QTcpSocket::ConnectedState)
 	{
-		ui.messagesend->setText("message envoye.");
+		
 		QString msg = ui.lineEdit->text();
 
-		QJsonObject levan{
-	{"Method",2},
-	{"username",pseudo},
-	{"message",msg},
-		};
+		if (msg == NULL) {
+			//ne rien faire
+		}
+		else {
 
-		QJsonArray jsarray{ levan };
-		QJsonDocument jsDoc(jsarray);
 
-		QString jsString = QString::fromLatin1(jsDoc.toJson());
+			QJsonObject levan{
+			{"Method",2},
+			{"username",pseudo},
+			{"message",msg},
+			};
 
-		socket->write(jsString.toLatin1());
-		ui.lineEdit->clear();
+			QJsonArray jsarray{ levan };
+			QJsonDocument jsDoc(jsarray);
+
+			QString jsString = QString::fromLatin1(jsDoc.toJson());
+
+			socket->write(jsString.toLatin1());
+			ui.lineEdit->clear();
+			ui.messagesend->setText("message envoye.");
+		}
 	}
 	else
 	{
