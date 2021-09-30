@@ -3,6 +3,7 @@
 <head>
     <title>Messagerie Gremont</title>
     <link rel="stylesheet" href="Messagerie.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 <body>
 
@@ -30,7 +31,7 @@
         
                   <label for="passwordInscription">Mot de passe</label>
                       <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
-                      <input type="password" id="ConfirmpasswordInscription" name="ConfirmpasswordInscription" placeholder="Entrer à nouveaux votre mot de passe">
+                      <input type="password" id="ConfirmpasswordInscription" name="ConfirmpasswordInscription" placeholder="Entrer encore une fois votre mot de passe">
               <button id="ShowInscription" onclick="afficheConnexion()">Page Connexion</button>
               <button type="submit" onclick="inscription()">Inscription</button>
           </form>
@@ -95,7 +96,7 @@
 
     }else if(VerifPassword != VerifConfirmPassword){
 
-      alert("Les mots de passes ne sont pas les mêmes")
+      alert("Les mots de passes sont différents")
 
     }else{
 
