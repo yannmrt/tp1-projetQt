@@ -1,0 +1,11 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (ProjetQT.vcxproj). Cela peut entraîner un comportement de nettoyage et de régénération incorrect.
+  uic TcpServer.ui
+  rcc ProjetQT.qrc
+  moc tcpserver.h
+   RCC: Warning: No resources in 'C:\Users\Martin\Desktop\tp1-projetQt\TcpServer\ProjetQT\ProjetQT.qrc'.
+  main.cpp
+  tcpserver.cpp
+  moc_tcpserver.cpp
+  qrc_ProjetQT.cpp
+  ProjetQT.vcxproj -> C:\Users\Martin\Desktop\tp1-projetQt\TcpServer\x64\Debug\TCPServer.exe
