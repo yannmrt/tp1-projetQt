@@ -71,7 +71,7 @@ void WebServer::processTextMessage(QString message)
 					QString requete = "SELECT username, password FROM user WHERE username = '" + username + "' AND password='" + password + "'";
 					retour = query.exec(requete);
 
-					if (retour) {
+					if (query.size() > 0) {
 						pClient->sendTextMessage("login.ok");
 					}
 					else {
@@ -110,12 +110,22 @@ void WebServer::processTextMessage(QString message)
 					QString username = object.value("username").toVariant().toString();
 					QString password = object.value("password").toVariant().toString();
 
-					QString requete = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "')";
+					QString requete = "SELECT username FROM user WHERE username = '" + username + "'";
 					retour = query.exec(requete);
 
-					if (retour)
-					{
-						pClient->sendTextMessage("register.ok");
+					if (query.size() == 0) {
+
+						QString requete = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "')";
+						retour = query.exec(requete);
+
+						if (retour)
+						{
+							pClient->sendTextMessage("register.ok");
+						}
+						else {
+							pClient->sendTextMessage("register.error");
+						}
+
 					}
 					else {
 						pClient->sendTextMessage("register.error");
