@@ -91,7 +91,7 @@ void TcpServer::onClientReadyRead()
 					QString requete = "SELECT username, password FROM user WHERE username = '" + username + "' AND password='" + password + "'";
 					retour = query.exec(requete);
 
-					if (retour)
+					if (query.size() > 0)
 					{
 						obj->write("login.ok");
 					}
@@ -130,12 +130,22 @@ void TcpServer::onClientReadyRead()
 					QString username = object.value("username").toVariant().toString();
 					QString password = object.value("password").toVariant().toString();
 
-					QString requete = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "')";
+					QString requete = "SELECT username FROM user WHERE username = '" + username + "'";
 					retour = query.exec(requete);
 
-					if (retour)
-					{
-						obj->write("register.ok");
+					if (query.size() == 0) {
+
+						QString requete = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "')";
+						retour = query.exec(requete);
+
+						if (retour)
+						{
+							obj->write("register.ok");
+						}
+						else {
+							obj->write("register.error");
+						}
+
 					}
 					else {
 						obj->write("register.error");
