@@ -45,11 +45,11 @@
           
         </form>
       </section>
-      
+
     <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" onsubmit="return false">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button>
+          <input id="textBox" rows="2" cols="45" maxlength="180" /><button onclick="sendText(UserCorrect)">Envoyer</button>
         </form>
     </div>
 
@@ -77,16 +77,6 @@
     document.querySelector('.login').style.display='none';
     document.querySelector('.inscription').style.display='flex';
     }
-  
-
-
-
-
-  function auto_height(elem) {  
-    elem.style.height = "75%";
-    elem.style.height = (elem.scrollHeight)+"px";
-  }
-
 
 
   function inscription() {

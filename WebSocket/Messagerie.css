@@ -16,13 +16,17 @@ body {
 
 #textBox{
     width: 100%;
+    font-size: 100%;
 }
 
 #Message {
     list-style-type: none;
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -30px;
 }
+
 
 #Message > li { 
     padding: 0.5rem 1rem; 
