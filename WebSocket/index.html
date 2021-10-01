@@ -139,8 +139,9 @@ function connexion() {
     /*Envoie du Message JSON vers le serveur WebSocket*/
     socket.send(JSON.stringify(userconnexion));
     getText(UserCorrect);
-
+    
     return false;
+    
   }
 }
 
@@ -201,9 +202,7 @@ socket.send(JSON.stringify(msg));
 return false;
 }
 
-window. setInterval(function(){ 
-  getText(UserCorrect);
-}, 3000);
+
 
 </script>
 </html>
