@@ -21,6 +21,10 @@ socket.addEventListener('message', function (event) {
     document.querySelector('.login').style.display='none';
     document.querySelector(".MessageBox").style.display='flex';
 
+    window. setInterval(function(){ 
+      getText(UserCorrect);
+    }, 3000);
+
   }
 
   else if(event.data.includes("login.error"))

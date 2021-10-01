@@ -8,40 +8,48 @@
 <body>
 
       <!-- Formulaire de connexion-->
-      <section class="login">
-          <div class="FormulaireConnexion" id="FormulaireConnexion"> 
-            <form id="Connexion" method="POST" onsubmit="return false">
-                <label for="usernameConnexion">Nom d'utilisateur</label>
-                  <input type="text" id="usernameConnexion"name="usernameConnexion" placeholder="Votre nom d'utilisateur">
-                
-                <label for="passwordConnexion">Mot de passe</label>
-                  <input type="password" id="passwordConnexion" name="passwordConnexion" placeholder="Votre mot de passe">
-                  <button id="ShowConnexion" onclick="afficheInscription()">Page Inscription</button>
-                <button type="submit" onclick="connexion()">Connexion</button>
-            </form>
-          </div>
-      </section>
+    <section class="login">
+      <form id="Connexion" method="POST" onsubmit="return false">
+     
+        <h1>Se connecter</h1>
+        
+        <div class="inputs">
+          <input type="text" id="usernameConnexion"name="usernameConnexion" placeholder="Pseudo" />
+          <input type="password"  id="passwordConnexion" name="passwordConnexion" placeholder="Mot de passe">
+        </div>
+        
+        <p class="PageInscription" onclick="afficheInscription()">Je n'ai pas de compte.</p>
+        <div align="center">
+          <button type="submit" onclick="connexion()">Se connecter</button>
+        </div>
+        
+      </form>
+    </section>
       
       <!--   Formulaire d'incription-->
       <section class="inscription">
-        <div class="FormulaireInscription" id="FormulaireInscription"> 
-          <form id="Inscription" method="POST" onsubmit="return false">
-                  <label for="usernameInscription">Nom d'utilisateur</label>
-                      <input type="text" id="usernameInscription"name="usernameInscription" placeholder="Votre nom d'utilisateur">
-        
-                  <label for="passwordInscription">Mot de passe</label>
-                      <input type="password" id="passwordInscription" name="passwordInscription" placeholder="Votre mot de passe">
-                      <input type="password" id="ConfirmpasswordInscription" name="ConfirmpasswordInscription" placeholder="Entrer encore une fois votre mot de passe">
-              <button id="ShowInscription" onclick="afficheConnexion()">Page Connexion</button>
-              <button type="submit" onclick="inscription()">Inscription</button>
-          </form>
-        </div>
+        <form id="Inscription" method="POST" onsubmit="return false">
+       
+          <h1>Inscription</h1>
+          
+          <div class="inputs">
+            <input type="text" id="usernameInscription"name="usernameInscription" placeholder="Pseudo" />
+            <input type="password"  id="passwordInscription" name="passwordInscription" placeholder="Mot de passe">
+            <input type="password" id="ConfirmpasswordInscription" name="ConfirmpasswordInscription" placeholder="Confirmer votre mot de passe">
+          </div>
+          
+          <p class="PageConnexion" onclick="afficheConnexion()">Je possède un compte.</p>
+          <div align="center">
+            <button type="submit" onclick="inscription()">S'incrire</button>
+          </div>
+          
+        </form>
       </section>
 
     <div class="MessageBox">
         <ul id="Message"></ul>
         <form id="form" onsubmit="return false">
-          <input id="textBox" rows="2" cols="45" maxlength="180" oninput="auto_height(this)" /><button onclick="sendText(UserCorrect)">Envoyer</button>
+          <input id="textBox" rows="2" cols="45" maxlength="180" /><button onclick="sendText(UserCorrect)">Envoyer</button>
         </form>
     </div>
 
@@ -69,16 +77,6 @@
     document.querySelector('.login').style.display='none';
     document.querySelector('.inscription').style.display='flex';
     }
-  
-
-
-
-
-  function auto_height(elem) {  
-    elem.style.height = "75%";
-    elem.style.height = (elem.scrollHeight)+"px";
-  }
-
 
 
   function inscription() {
@@ -141,8 +139,9 @@ function connexion() {
     /*Envoie du Message JSON vers le serveur WebSocket*/
     socket.send(JSON.stringify(userconnexion));
     getText(UserCorrect);
-
+    
     return false;
+    
   }
 }
 
@@ -203,9 +202,7 @@ socket.send(JSON.stringify(msg));
 return false;
 }
 
-window. setInterval(function(){ 
-  getText(UserCorrect);
-}, 5000);
+
 
 </script>
 </html>

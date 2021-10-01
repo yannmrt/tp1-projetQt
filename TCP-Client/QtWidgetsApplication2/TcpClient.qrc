@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="projetmort">
+    <qresource prefix="/projetmort">
+        <file>image.png</file>
     </qresource>
 </RCC>
