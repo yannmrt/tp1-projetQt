@@ -11,7 +11,7 @@ TcpCLient::TcpCLient(QWidget *parent)
 	QObject::connect(socket, SIGNAL(connected()), this, SLOT(onSocketConnected()));
 	QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onSocketDisonnected()));
 	QObject::connect(socket, SIGNAL(readyRead()), this, SLOT(messagerecu()));
-	socket->connectToHost( "192.168.65.230", 178);
+	socket->connectToHost( "192.168.64.148", 178);
 	//socket->connectToHost("localhost", 178);
 	ui.lineEdit->setVisible(false);
 	ui.pushButton_2->setVisible(false);
@@ -74,6 +74,7 @@ void TcpCLient::messageserver() //cette fonction permet d'envoyer un message ave
 
 		if (msg == NULL) {
 			//ne rien faire
+			ui.messagesend->setText("ecrivez un message.");
 		}
 		else {
 
@@ -144,14 +145,16 @@ void TcpCLient::messagerecu()//cette fonction est importante, elle permet de rec
 			ui.labelinsc->setText("login ou mot de passe incorrect !");
 		}
 
+
 		else
 		{
 			ui.test2->setText("erreur de connection");
 		}
+
 	}
 	else if (str == "sendMsg.ok") {
 
-		QJsonObject levan{
+		/*QJsonObject levan{
 		{"Method",4},
 		};
 
@@ -160,7 +163,7 @@ void TcpCLient::messagerecu()//cette fonction est importante, elle permet de rec
 
 		QString jsString = QString::fromLatin1(jsDoc.toJson());
 		socket->write(jsString.toLatin1());
-		ui.test->QTextEdit::clear();
+		ui.test->QTextEdit::clear();*/
 	}
 
 		
