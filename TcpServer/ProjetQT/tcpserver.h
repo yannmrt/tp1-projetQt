@@ -20,11 +20,13 @@ public:
 	char requete;
 	char retour;
 	char donnees;
+	int sizeTable = 0;
 
 private:
     Ui::TcpServerClass ui;
 	QTcpServer * server;
 	QTcpSocket * socket;
+	QTcpSocket * listSocket[1000];
 
 	QSqlDatabase *db;
 	QSqlQuery *query;

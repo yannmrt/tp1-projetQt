@@ -30,6 +30,10 @@ void TcpServer::onServerNewConnection()
 
 	QObject::connect(client, SIGNAL(readyRead()), this, SLOT(onClientReadyRead()));
 	QObject::connect(client, SIGNAL(disconnected()), this, SLOT(onClientDisconnected()));
+
+	// On sauvegarde le client dans un nouveau tableau
+	TcpServer::listSocket[sizeTable] = client;
+	TcpServer::sizeTable++;
 }
 
 // Lorsque le client se déconnecter, on déconnecte le socket et on supprime l'objet
@@ -115,7 +119,15 @@ void TcpServer::onClientReadyRead()
 					retour = query.exec(requete);
 
 					if (retour) {
-						obj->write("sendMsg.ok");
+
+						QByteArray heureEncode = heure.toUtf8();
+						QByteArray usernameEncode = username.toUtf8();
+						QByteArray MessageEncode = message.toUtf8();
+						for (int i = 0; i < TcpServer::sizeTable; i++)
+						{
+							TcpServer::listSocket[i]->write(heureEncode + " " + usernameEncode + " : " + MessageEncode + "\n");
+
+						}
 					}
 					else {
 						obj->write("sendMsg.error");
@@ -161,7 +173,7 @@ void TcpServer::onClientReadyRead()
 
 					if (retour == true) {
 						// On peut récupèrer les chat
-						QString requete = "SELECT text, heure, username FROM chat ORDER BY id ASC";
+						QString requete = "SELECT text, heure, username FROM chat ORDER BY id ASC LIMIT 100";
 						/*QStringList values;
 						retour = bddMySQL->recuperer(requete, values);*/
 						retour = query.exec(requete);
