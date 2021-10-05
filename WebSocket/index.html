@@ -165,19 +165,6 @@ function sendText(UserCorrect) {
     /*J'envoie le message au format JSON au serveur afin qu'il puisse être stocké en BDD*/
     socket.send(JSON.stringify(msg));
 
-    /*Je crée chaque message comme un 'li' afin de les afficher facilement dans une liste*/
-    var MessageListe = document.createElement('li');
-
-    /*J'affecte mon User et son message dans une variable*/
-    MessageListe.textContent = msg[0].username + " : " + msg[0].message;
-
-    /*
-      Chat = document.getElementById('Message')
-      Je crée une nouvelle ligne dans ma liste a chaque
-    */
-    Chat.appendChild(MessageListe);
-    window.scrollTo(0, document.ul.scrollHeight);
-
   }else{
     alert('Veulliez vous connecter pour commencer un chat');
   }
