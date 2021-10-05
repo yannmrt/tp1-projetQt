@@ -24,6 +24,7 @@ public:
 	char requete;
 	char retour;
 	char donnees;
+	int sizeTable = 0;
 
 private:
     Ui::WebServerClass ui;

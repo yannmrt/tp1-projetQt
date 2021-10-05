@@ -27,6 +27,10 @@ void WebServer::newConnection()
 	QObject::connect(pSocket, &QWebSocket::binaryMessageReceived, this, &WebServer::processBinaryMessage);
 	QObject::connect(pSocket, &QWebSocket::disconnected, this, &WebServer::socketDisconnected);
 
+	// On sauvegarde le client dans un nouveau tableau
+	WebServer::m_clients[sizeTable] = pSocket;
+	WebServer::sizeTable++;
+
 }
 
 void WebServer::processTextMessage(QString message)
@@ -95,6 +99,15 @@ void WebServer::processTextMessage(QString message)
 					retour = query.exec(requete);
 
 					if (retour) {
+						QByteArray heureEncode = heure.toUtf8();
+						QByteArray usernameEncode = username.toUtf8();
+						QByteArray MessageEncode = message.toUtf8();
+						for (int i = 0; i < WebServer::sizeTable; i++)
+						{
+							WebServer::m_clients[i]->sendTextMessage(heureEncode + " " + usernameEncode + " : " + MessageEncode + "\n");
+
+						}
+
 						pClient->sendTextMessage("sendMsg.ok");
 					}
 					else {
