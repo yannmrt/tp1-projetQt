@@ -173,14 +173,14 @@ void TcpServer::onClientReadyRead()
 
 					if (retour == true) {
 						// On peut récupèrer les chat
-						QString requete = "SELECT text, heure, username FROM chat ORDER BY id ASC LIMIT 100";
+						QString requete = "SELECT text, heure, username FROM chat ORDER BY id ASC";
 						/*QStringList values;
 						retour = bddMySQL->recuperer(requete, values);*/
 						retour = query.exec(requete);
 
 						if (retour == true) {
 							// Ici on va envoyer les messages au client au format JSON
-							QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC");
+							QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC LIMIT 100");
 							// for(/*initialisation*/ int i=1; /*condition*/ i<=10; /*incrémentation*/ ++i)
 							while (query.next()) {
 								QString text = query.value("text").toString();
