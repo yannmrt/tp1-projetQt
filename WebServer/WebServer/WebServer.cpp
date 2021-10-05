@@ -159,7 +159,7 @@ void WebServer::processTextMessage(QString message)
 
 						if (retour == true) {
 							// Ici on va envoyer les messages au client au format JSON
-							QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC");
+							QSqlQuery query("SELECT text, heure, username FROM chat ORDER BY id ASC LIMIT 100");
 							// for(/*initialisation*/ int i=1; /*condition*/ i<=10; /*incrémentation*/ ++i)
 							while (query.next()) {
 								QString text = query.value("text").toString();
